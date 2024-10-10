@@ -1,5 +1,5 @@
 import "package:dotenv/dotenv.dart";
-import "package:cassandra_discord_bot/database.dart";
+import "package:mog_discord_bot/database.dart";
 import "package:mysql1/mysql1.dart";
 import "package:nyxx/nyxx.dart";
 import "package:nyxx_commands/nyxx_commands.dart";

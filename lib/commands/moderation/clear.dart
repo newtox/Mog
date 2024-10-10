@@ -1,4 +1,4 @@
-import "package:cassandra_discord_bot/database.dart";
+import "package:mog_discord_bot/database.dart";
 import "package:nyxx/nyxx.dart";
 import "package:nyxx_commands/nyxx_commands.dart";
 

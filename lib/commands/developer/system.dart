@@ -1,7 +1,7 @@
 import "dart:io";
 
-import "package:cassandra_discord_bot/database.dart";
-import "package:cassandra_discord_bot/utils/utils.dart";
+import "package:mog_discord_bot/database.dart";
+import "package:mog_discord_bot/utils/utils.dart";
 import "package:nyxx/nyxx.dart";
 import "package:nyxx_commands/nyxx_commands.dart";
 import "package:nyxx_extensions/nyxx_extensions.dart";
