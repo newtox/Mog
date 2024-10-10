@@ -88,5 +88,5 @@ By contributing, you agree that your contributions will be licensed under the sa
 
 Have a feature request or found a bug?
 
-    Open an issue on GitHub.
-    Reach out via email at mog@example.com (mailto:mog@example.com) (replace with actual contact if available).
+- Open an issue directly on GitHub.
+- Or reach out to me at [contact@placeholder.de](mailto:contact@placeholder.de)
