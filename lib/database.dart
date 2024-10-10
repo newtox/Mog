@@ -133,11 +133,15 @@ Future<void> clearOldGuilds(NyxxGateway client) async {
         print("Failed to parse guild ID: $guildIdAsString");
         continue; // Skip this iteration if ID can't be parsed.
       }
-      // Check if the guild still exists in the client's cache
-      if (!client.guilds.cache.containsKey(Snowflake(guildIdAsInt))) {
+      // Check if the guild can still be fetched.
+      try {
+        await client.guilds.fetch(Snowflake(guildIdAsInt));
+      } catch (e) {
         // If not, delete the guild record from the database.
         await connection
             .query("DELETE FROM `guilds` WHERE `id` = ?;", [guildIdAsString]);
+      } finally {
+        await connection.close();
       }
     }
   } catch (e) {
@@ -169,11 +173,15 @@ Future<void> clearOldUsers(NyxxGateway client) async {
         print("Failed to parse user ID: $userIdAsString");
         continue; // Skip this iteration if ID can't be parsed.
       }
-      // Check if the user still exists in the client's cache.
-      if (!client.users.cache.containsKey(Snowflake(userIdAsInt))) {
+      // Check if the user can still be fetched.
+      try {
+        await client.users.fetch(Snowflake(userIdAsInt));
+      } catch (e) {
         // If not, delete the user record from the database.
         await connection
             .query("DELETE FROM `users` WHERE `id` = ?;", [userIdAsString]);
+      } finally {
+        await connection.close();
       }
     }
   } catch (e) {
