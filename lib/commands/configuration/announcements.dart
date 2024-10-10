@@ -8,7 +8,7 @@ import "package:nyxx_extensions/nyxx_extensions.dart";
 
 String announcementTypeToString(String type) => type;
 
-const latencyTypeConverter = SimpleConverter.fixed(
+const announcementTypeConverter = SimpleConverter.fixed(
   elements: ["Join", "Leave"],
   stringify: announcementTypeToString,
 );
@@ -74,7 +74,7 @@ final announcements = ChatGroup("announcements", "Manage server announcements.",
                 Locale.ja: "この設定がメンバー加入または離脱に関係するかどうか。",
                 Locale.ko: "이 설정이 회원 가입 또는 탈퇴에 해당하는지 여부."
               })
-              @UseConverter(latencyTypeConverter)
+              @UseConverter(announcementTypeConverter)
               String type,
               @Description("The channel where announcements will be sent.", {
                 Locale.da: "Kanal, hvor meddelelser vil blive sendt.",
@@ -275,7 +275,7 @@ final announcements = ChatGroup("announcements", "Manage server announcements.",
                 Locale.ja: "この設定がメンバー加入または離脱に関係するかどうか。",
                 Locale.ko: "이 설정이 회원 가입 또는 탈퇴에 해당하는지 여부."
               })
-              @UseConverter(latencyTypeConverter)
+              @UseConverter(announcementTypeConverter)
               String type) async {
         MySqlConnection connection = await MySqlConnection.connect(
             ConnectionSettings(
