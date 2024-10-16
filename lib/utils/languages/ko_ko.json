@@ -24,5 +24,7 @@
     "info_uptime": "가동 시간",
     "info_invite": "여기서 봇 초대",
     "ping_latency": "보고 싶은 지연 시간 메트릭을 선택하세요.",
-    "clear_cleared": "메시지가 성공적으로 삭제되었습니다."
+    "clear_cleared": "메시지가 성공적으로 삭제되었습니다.",
+    "hug_user": "잠깐 안겨줄게 :3",
+    "hug_user_hugged": "&hugged 당신은 &hug 에게 안겼습니다"
 }

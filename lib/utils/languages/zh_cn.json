@@ -24,5 +24,7 @@
     "info_uptime": "运行时间",
     "info_invite": "在这里邀请机器人",
     "ping_latency": "选择你想查看的延迟指标。",
-    "clear_cleared": "消息已成功清除。"
+    "clear_cleared": "消息已成功清除。",
+    "hug_user": "让我快速拥抱你 :3",
+    "hug_user_hugged": "&hugged 你被 &hug 拥抱了"
 }

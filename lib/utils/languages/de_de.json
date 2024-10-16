@@ -24,5 +24,7 @@
     "info_uptime": "Betriebszeit",
     "info_invite": "Lade den Bot hier ein",
     "ping_latency": "Wähle die Latenz-Metrik, die du sehen möchtest.",
-    "clear_cleared": "Nachrichten erfolgreich gelöscht."
+    "clear_cleared": "Nachrichten erfolgreich gelöscht.",
+    "hug_user": "Lass mich dich schnell umarmen :3",
+    "hug_user_hugged": "&hugged, du wurdest von &hug umarmt"
 }

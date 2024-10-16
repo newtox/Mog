@@ -24,5 +24,7 @@
     "info_uptime": "Tiempo de actividad",
     "info_invite": "Invita al bot aquí",
     "ping_latency": "Elige la métrica de latencia que deseas ver.",
-    "clear_cleared": "Mensajes eliminados con éxito."
+    "clear_cleared": "Mensajes eliminados con éxito.",
+    "hug_user": "Déjame abrazarte rápido :3",
+    "hug_user_hugged": "&hugged has sido abrazado por &hug"
 }

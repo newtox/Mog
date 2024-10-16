@@ -24,5 +24,7 @@
     "info_uptime": "Disponibilité",
     "info_invite": "Invitez le bot ici",
     "ping_latency": "Choisissez la métrique de latence que vous souhaitez voir.",
-    "clear_cleared": "Messages supprimés avec succès."
+    "clear_cleared": "Messages supprimés avec succès.",
+    "hug_user": "Laisse-moi te faire un câlin rapidement :3",
+    "hug_user_hugged": "&hugged tu as été embrassé par &hug"
 }

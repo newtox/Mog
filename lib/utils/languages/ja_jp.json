@@ -24,5 +24,7 @@
     "info_uptime": "稼働時間",
     "info_invite": "ここでボットを招待",
     "ping_latency": "表示したい遅延のメトリックを選択してください。",
-    "clear_cleared": "メッセージが正常に削除されました。"
+    "clear_cleared": "メッセージが正常に削除されました。",
+    "hug_user": "ちょっと抱きしめさせて :3",
+    "hug_user_hugged": "&hugged あなたは &hug に抱きしめられました"
 }

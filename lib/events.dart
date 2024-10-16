@@ -11,6 +11,7 @@ import "package:mog_discord_bot/commands/image/awoo.dart";
 import "package:mog_discord_bot/commands/image/neko.dart";
 import "package:mog_discord_bot/commands/image/waifu.dart";
 import "package:mog_discord_bot/commands/moderation/clear.dart";
+import "package:mog_discord_bot/commands/roleplay/hug.dart";
 import "package:mog_discord_bot/database.dart";
 import "package:mog_discord_bot/utils/functions.dart";
 import "package:mysql1/mysql1.dart";
@@ -35,6 +36,7 @@ CommandsPlugin setupCommandHandler(CommandsPlugin commands) {
   commands.addCommand(neko);
   commands.addCommand(waifu);
   commands.addCommand(clear);
+  commands.addCommand(hug);
 
   return commands;
 }

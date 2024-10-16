@@ -24,5 +24,7 @@
     "info_uptime": "Oppetid",
     "info_invite": "Inviter botten her",
     "ping_latency": "Vælg hvilken latenstid du vil se.",
-    "clear_cleared": "Beskeder ryddet med succes."
+    "clear_cleared": "Beskeder ryddet med succes.",
+    "hug_user": "Lad mig kramme dig hurtigt :3",
+    "hug_user_hugged": "&hugged du er blevet krammet af &hug"
 }
