@@ -7,7 +7,9 @@ import "package:mog_discord_bot/commands/developer/system.dart";
 import "package:mog_discord_bot/commands/fun/someone.dart";
 import "package:mog_discord_bot/commands/general/info.dart";
 import "package:mog_discord_bot/commands/general/ping.dart";
+import "package:mog_discord_bot/commands/image/awoo.dart";
 import "package:mog_discord_bot/commands/image/neko.dart";
+import "package:mog_discord_bot/commands/image/waifu.dart";
 import "package:mog_discord_bot/commands/moderation/clear.dart";
 import "package:mog_discord_bot/database.dart";
 import "package:mog_discord_bot/utils/functions.dart";
@@ -29,7 +31,9 @@ CommandsPlugin setupCommandHandler(CommandsPlugin commands) {
   commands.addCommand(someone);
   commands.addCommand(info);
   commands.addCommand(ping);
+  commands.addCommand(awoo);
   commands.addCommand(neko);
+  commands.addCommand(waifu);
   commands.addCommand(clear);
 
   return commands;
