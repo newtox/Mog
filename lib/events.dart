@@ -1,7 +1,6 @@
 import "package:dotenv/dotenv.dart";
 import "package:mog_discord_bot/commands/configuration/announcements.dart";
 import "package:mog_discord_bot/commands/configuration/autorole.dart";
-// import "package:mog_discord_bot/commands/configuration/autorole.dart";
 import "package:mog_discord_bot/commands/configuration/color.dart";
 import "package:mog_discord_bot/commands/configuration/language.dart";
 import "package:mog_discord_bot/commands/developer/system.dart";
