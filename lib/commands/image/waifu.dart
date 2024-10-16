@@ -6,7 +6,7 @@ import "package:nyxx/nyxx.dart";
 import "package:nyxx_commands/nyxx_commands.dart";
 import "package:nyxx_extensions/nyxx_extensions.dart";
 
-final neko =
+final waifu =
     ChatCommand("waifu", "Displays a waifu image.", localizedDescriptions: {
   Locale.da: "Viser et waifu-billede.",
   Locale.de: "Zeigt ein Waifu-Bild an.",

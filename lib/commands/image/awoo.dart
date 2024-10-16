@@ -6,7 +6,7 @@ import "package:nyxx/nyxx.dart";
 import "package:nyxx_commands/nyxx_commands.dart";
 import "package:nyxx_extensions/nyxx_extensions.dart";
 
-final neko =
+final awoo =
     ChatCommand("awoo", "Displays an awoo image.", localizedDescriptions: {
   Locale.da: "Viser et awoo-billede.",
   Locale.de: "Zeigt ein Awoo-Bild an.",
