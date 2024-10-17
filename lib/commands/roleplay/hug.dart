@@ -19,7 +19,7 @@ final hug = ChatCommand("hug", "Hug someone.", localizedDescriptions: {
   Locale.ja: "誰かを抱きしめる。",
   Locale.ko: "누군가를 안아주세요."
 }, (ChatContext context,
-    @Description("The user you want to hug.", {
+    [@Description("The user you want to hug.", {
       Locale.da: "Den bruger, du vil kramme.",
       Locale.de: "Der Benutzer, den du umarmen möchtest.",
       Locale.enUs: "The user you want to hug.",
@@ -31,7 +31,7 @@ final hug = ChatCommand("hug", "Hug someone.", localizedDescriptions: {
       Locale.ja: "抱きしめたいユーザー。",
       Locale.ko: "포옹하고 싶은 사용자."
     })
-    User? user) async {
+    User? user]) async {
   try {
     final httpPackageUrl = Uri.https("waifu.pics", "api/sfw/hug");
     final httpPackageInfo = await http.get(httpPackageUrl);
@@ -40,7 +40,7 @@ final hug = ChatCommand("hug", "Hug someone.", localizedDescriptions: {
         jsonDecode(utf8.decode(httpPackageInfo.bodyBytes)) as Map;
     final httpPackageResult = Uri.parse(httpPackageResponse["url"] as String);
 
-    if (user == null) {
+    if (user == null || user.id == context.user.id) {
       await context.respond(MessageBuilder(embeds: [
         EmbedBuilder(
             color: await getUserColorFromDatabase(context.user.id),
@@ -48,7 +48,7 @@ final hug = ChatCommand("hug", "Hug someone.", localizedDescriptions: {
             image: EmbedImageBuilder(url: httpPackageResult))
       ]));
     } else {
-      await context.respond(MessageBuilder(content: user.toString(), embeds: [
+      await context.respond(MessageBuilder(content: "<@${user.id}>", embeds: [
         EmbedBuilder(
             color: await getUserColorFromDatabase(context.user.id),
             title: (await getString(context.user, "hug_user_hugged"))
