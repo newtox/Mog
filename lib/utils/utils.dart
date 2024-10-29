@@ -1,21 +1,21 @@
-import "dart:convert";
-import "dart:math";
+import 'dart:convert';
+import 'dart:math';
 
-import "package:http/http.dart" as http;
-import "package:nyxx/nyxx.dart";
+import 'package:http/http.dart' as http;
+import 'package:nyxx/nyxx.dart';
 
 /// Formats a number with commas as thousand separators.
 String numberWithCommas(num numb) {
   // Use regex to find every three digits from the right and insert a comma.
   return numb.toString().replaceAllMapped(
-      RegExp(r"(\d{1,3})(?=(\d{3})+(?!\d))"), (Match m) => "${m[1]},");
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
 }
 
 /// Cleans the text by escaping backticks and @ symbols with a zero-width space
 /// to prevent code execution or mentions in certain contexts.
 String clean(String text) {
   // Replace backticks and @ with themselves plus a zero-width space.
-  return text.replaceAll("`", "`\u{200B}").replaceAll("@", "@\u{200B}");
+  return text.replaceAll('`', '`\u{200B}').replaceAll('@', '@\u{200B}');
 }
 
 /// Mockingly capitalizes random letters in the given text, mimicking a meme style.
@@ -38,8 +38,8 @@ String mock(String text) {
 
 /// Compares two roles based on their position in the role hierarchy.
 /// Returns:
-/// -1 if "a" is above "b",
-///  1 if "b" is above "a",
+/// -1 if 'a' is above 'b',
+///  1 if 'b' is above 'a',
 ///  0 if they are at the same level or equal.
 int compare(Role a, Role b) {
   if (a.position > b.position) {
@@ -58,13 +58,13 @@ int compare(Role a, Role b) {
 /// Throws an exception if there's an error during the upload or if the response is unexpected.
 Future<String> uploadToHastebin(String content) async {
   // Define the URI for the Hastebin API endpoint.
-  final uri = Uri.https("hastebin.newtox.de", "/documents");
+  final uri = Uri.https('hastebin.newtox.de', '/documents');
 
   try {
     // Send a POST request with the content.
     final response = await http.post(
       uri,
-      headers: {"Content-Type": "text/plain"},
+      headers: {'Content-Type': 'text/plain'},
       body: content,
     );
 
@@ -73,20 +73,20 @@ Future<String> uploadToHastebin(String content) async {
       // Decode the JSON response
       final jsonResponse = jsonDecode(response.body);
       // Check if the response contains a 'key' for the URL.
-      if (jsonResponse.containsKey("key")) {
+      if (jsonResponse.containsKey('key')) {
         // Return the URL where the content is hosted.
-        return "https://hastebin.newtox.de/${jsonResponse["key"]}";
+        return 'https://hastebin.newtox.de/${jsonResponse['key']}';
       } else {
         // Throw an exception if the response format is unexpected.
-        throw Exception("Unexpected response from Hastebin: $jsonResponse");
+        throw Exception('Unexpected response from Hastebin: $jsonResponse');
       }
     } else {
       // Throw an exception if the status code indicates failure.
       throw Exception(
-          "Failed to upload to Hastebin. Status code: ${response.statusCode}");
+          'Failed to upload to Hastebin. Status code: ${response.statusCode}');
     }
   } catch (e) {
     // Catch and rethrow any exceptions that occur during the process.
-    throw Exception("Error uploading to Hastebin: $e");
+    throw Exception('Error uploading to Hastebin: $e');
   }
 }
