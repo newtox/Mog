@@ -33,7 +33,7 @@ final clear = ChatCommand('clear', 'Clear messages in your current channel.',
           Locale.ko: '삭제할 메시지의 양.'
         })
         int amount,
-        @Description('The user from whom to delete messages.', {
+        [@Description('The user from whom to delete messages.', {
           Locale.da: 'Brugeren, hvis beskeder skal slettes.',
           Locale.de:
               'Der Benutzer, von dem Nachrichten gelöscht werden sollen.',
@@ -46,7 +46,7 @@ final clear = ChatCommand('clear', 'Clear messages in your current channel.',
           Locale.ja: 'メッセージを削除するユーザー。',
           Locale.ko: '메시지를 삭제할 사용자.'
         })
-        User? user) async {
+        User? user]) async {
   List<Message>? channelMessages;
   Snowflake? last;
 
