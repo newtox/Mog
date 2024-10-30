@@ -10,7 +10,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 final highfive =
     ChatCommand('highfive', 'High five someone.', localizedDescriptions: {
   Locale.da: 'Giv high five til nogen.',
-  Locale.de: 'Jemandem ein High Five geben.',
+  Locale.de: 'Gib jemanden ein High Five.',
   Locale.enUs: 'High five someone.',
   Locale.esEs: 'Chocar los cinco con alguien.',
   Locale.fr: 'Faire un high five à quelqu\'un.',

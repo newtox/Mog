@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final dance = ChatCommand('dance', 'Dance.', localizedDescriptions: {
   Locale.da: 'Danse.',
-  Locale.de: 'Tanzen.',
+  Locale.de: 'Tanze.',
   Locale.enUs: 'Dance.',
   Locale.esEs: 'Bailar.',
   Locale.fr: 'Danser.',

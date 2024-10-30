@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final bonk = ChatCommand('bonk', 'Bonk someone.', localizedDescriptions: {
   Locale.da: 'Bonk nogen.',
-  Locale.de: 'Jemanden bonken.',
+  Locale.de: 'Bonke jemanden.',
   Locale.enUs: 'Bonk someone.',
   Locale.esEs: 'Golpear a alguien.',
   Locale.fr: 'Frapper quelqu\'un.',

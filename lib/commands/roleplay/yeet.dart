@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final yeet = ChatCommand('yeet', 'Yeet someone.', localizedDescriptions: {
   Locale.da: 'Kast nogen.',
-  Locale.de: 'Jemanden wegschleudern.',
+  Locale.de: 'Schleudere jemanden.',
   Locale.enUs: 'Yeet someone.',
   Locale.esEs: 'Lanzar a alguien.',
   Locale.fr: 'Balancer quelqu\'un.',

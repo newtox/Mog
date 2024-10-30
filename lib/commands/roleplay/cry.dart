@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final cry = ChatCommand('cry', 'Cry.', localizedDescriptions: {
   Locale.da: 'Græde.',
-  Locale.de: 'Weinen.',
+  Locale.de: 'Weine.',
   Locale.enUs: 'Cry.',
   Locale.esEs: 'Llorar.',
   Locale.fr: 'Pleurer.',

@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final poke = ChatCommand('poke', 'Poke someone.', localizedDescriptions: {
   Locale.da: 'Prik til nogen.',
-  Locale.de: 'Jemanden anstupsen.',
+  Locale.de: 'Stupse jemanden an.',
   Locale.enUs: 'Poke someone.',
   Locale.esEs: 'Tocar a alguien.',
   Locale.fr: 'Pousser quelqu\'un.',

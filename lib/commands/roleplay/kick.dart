@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final kick = ChatCommand('kick', 'Kick someone.', localizedDescriptions: {
   Locale.da: 'Spark nogen.',
-  Locale.de: 'Jemanden treten.',
+  Locale.de: 'Tritt jemanden.',
   Locale.enUs: 'Kick someone.',
   Locale.esEs: 'Patear a alguien.',
   Locale.fr: 'Donner un coup de pied à quelqu\'un.',

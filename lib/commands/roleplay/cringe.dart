@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final cringe = ChatCommand('cringe', 'Cringe.', localizedDescriptions: {
   Locale.da: 'Krympe.',
-  Locale.de: 'Zusammenzucken.',
+  Locale.de: 'Zucke zusammen.',
   Locale.enUs: 'Cringe.',
   Locale.esEs: 'Estremecerse.',
   Locale.fr: 'Frémir.',

@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final happy = ChatCommand('happy', 'Be happy.', localizedDescriptions: {
   Locale.da: 'Vær glad.',
-  Locale.de: 'Glücklich sein.',
+  Locale.de: 'Sei glücklich.',
   Locale.enUs: 'Be happy.',
   Locale.esEs: 'Estar feliz.',
   Locale.fr: 'Être heureux.',

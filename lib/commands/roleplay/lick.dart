@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final lick = ChatCommand('lick', 'Lick someone.', localizedDescriptions: {
   Locale.da: 'Slik nogen.',
-  Locale.de: 'Jemanden ablecken.',
+  Locale.de: 'Lecke jemanden ab.',
   Locale.enUs: 'Lick someone.',
   Locale.esEs: 'Lamer a alguien.',
   Locale.fr: 'Lécher quelqu\'un.',

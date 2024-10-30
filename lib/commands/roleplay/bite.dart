@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final bite = ChatCommand('bite', 'Bite someone.', localizedDescriptions: {
   Locale.da: 'Bid nogen.',
-  Locale.de: 'Jemanden beißen.',
+  Locale.de: 'Beiße jemanden.',
   Locale.enUs: 'Bite someone.',
   Locale.esEs: 'Morder a alguien.',
   Locale.fr: 'Mordre quelqu\'un.',

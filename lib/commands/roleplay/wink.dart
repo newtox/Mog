@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final wink = ChatCommand('wink', 'Wink.', localizedDescriptions: {
   Locale.da: 'Blink.',
-  Locale.de: 'Zwinkern.',
+  Locale.de: 'Zwinkere.',
   Locale.enUs: 'Wink.',
   Locale.esEs: 'Guiñar.',
   Locale.fr: 'Faire un clin d\'œil.',

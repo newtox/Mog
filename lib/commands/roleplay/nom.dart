@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final nom = ChatCommand('nom', 'Nom someone.', localizedDescriptions: {
   Locale.da: 'Spis nogen.',
-  Locale.de: 'Jemanden anknabbern.',
+  Locale.de: 'Knabbere jemanden an.',
   Locale.enUs: 'Nom someone.',
   Locale.esEs: 'Mordisquear a alguien.',
   Locale.fr: 'Grignoter quelqu\'un.',

@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final slap = ChatCommand('slap', 'Slap someone.', localizedDescriptions: {
   Locale.da: 'Giv nogen en lussing.',
-  Locale.de: 'Jemanden ohrfeigen.',
+  Locale.de: 'Ohrfeige jemanden.',
   Locale.enUs: 'Slap someone.',
   Locale.esEs: 'Abofetear a alguien.',
   Locale.fr: 'Gifler quelqu\'un.',

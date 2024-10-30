@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final bully = ChatCommand('bully', 'Bully someone.', localizedDescriptions: {
   Locale.da: 'Drille nogen.',
-  Locale.de: 'Jemanden mobben.',
+  Locale.de: 'Mobbe jemanden.',
   Locale.enUs: 'Bully someone.',
   Locale.esEs: 'Intimidar a alguien.',
   Locale.fr: 'Intimider quelqu\'un.',

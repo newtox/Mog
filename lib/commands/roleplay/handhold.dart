@@ -10,7 +10,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 final handhold =
     ChatCommand('handhold', 'Hold someone\'s hand.', localizedDescriptions: {
   Locale.da: 'Hold i hånd med nogen.',
-  Locale.de: 'Jemandes Hand halten.',
+  Locale.de: 'Halte jemandes Hand.',
   Locale.enUs: 'Hold someone\'s hand.',
   Locale.esEs: 'Tomar la mano de alguien.',
   Locale.fr: 'Tenir la main de quelqu\'un.',

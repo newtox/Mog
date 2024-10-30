@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final pat = ChatCommand('pat', 'Pat someone.', localizedDescriptions: {
   Locale.da: 'Klap nogen.',
-  Locale.de: 'Jemanden streicheln.',
+  Locale.de: 'Streichel jemanden.',
   Locale.enUs: 'Pat someone.',
   Locale.esEs: 'Acariciar a alguien.',
   Locale.fr: 'Caresser quelqu\'un.',

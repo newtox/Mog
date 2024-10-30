@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final kill = ChatCommand('kill', 'Kill someone.', localizedDescriptions: {
   Locale.da: 'Dræb nogen.',
-  Locale.de: 'Jemanden töten.',
+  Locale.de: 'Töte jemanden.',
   Locale.enUs: 'Kill someone.',
   Locale.esEs: 'Matar a alguien.',
   Locale.fr: 'Tuer quelqu\'un.',

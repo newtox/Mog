@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final smile = ChatCommand('smile', 'Smile.', localizedDescriptions: {
   Locale.da: 'Smil.',
-  Locale.de: 'Lächeln.',
+  Locale.de: 'Lächle.',
   Locale.enUs: 'Smile.',
   Locale.esEs: 'Sonreír.',
   Locale.fr: 'Sourire.',

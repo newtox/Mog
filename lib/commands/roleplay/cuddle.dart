@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final cuddle = ChatCommand('cuddle', 'Cuddle someone.', localizedDescriptions: {
   Locale.da: 'Putte med nogen.',
-  Locale.de: 'Jemanden kuscheln.',
+  Locale.de: 'Kuschel jemanden.',
   Locale.enUs: 'Cuddle someone.',
   Locale.esEs: 'Abrazar a alguien.',
   Locale.fr: 'Câliner quelqu\'un.',

@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final wave = ChatCommand('wave', 'Wave.', localizedDescriptions: {
   Locale.da: 'Vink.',
-  Locale.de: 'Winken.',
+  Locale.de: 'Winke.',
   Locale.enUs: 'Wave.',
   Locale.esEs: 'Saludar.',
   Locale.fr: 'Faire signe.',

@@ -9,7 +9,7 @@ import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final blush = ChatCommand('blush', 'Blush.', localizedDescriptions: {
   Locale.da: 'Rødme.',
-  Locale.de: 'Erröten.',
+  Locale.de: 'Erröte.',
   Locale.enUs: 'Blush.',
   Locale.esEs: 'Sonrojarse.',
   Locale.fr: 'Rougir.',
