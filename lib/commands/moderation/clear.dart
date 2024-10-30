@@ -64,8 +64,9 @@ final clear = ChatCommand('clear', 'Clear messages in your current channel.',
     if (user == null) {
       toRemove = channelMessages.take(amount);
     } else {
-      toRemove =
-          channelMessages.where((message) => message.author.id == user.id);
+      toRemove = channelMessages
+          .where((message) => message.author.id == user.id)
+          .take(amount);
     }
 
     if (toRemove.length == 1) {
