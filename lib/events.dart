@@ -11,7 +11,31 @@ import 'package:mog_discord_bot/commands/image/awoo.dart';
 import 'package:mog_discord_bot/commands/image/neko.dart';
 import 'package:mog_discord_bot/commands/image/waifu.dart';
 import 'package:mog_discord_bot/commands/moderation/clear.dart';
+import 'package:mog_discord_bot/commands/roleplay/bite.dart';
+import 'package:mog_discord_bot/commands/roleplay/blush.dart';
+import 'package:mog_discord_bot/commands/roleplay/bonk.dart';
+import 'package:mog_discord_bot/commands/roleplay/bully.dart';
+import 'package:mog_discord_bot/commands/roleplay/cringe.dart';
+import 'package:mog_discord_bot/commands/roleplay/cry.dart';
+import 'package:mog_discord_bot/commands/roleplay/cuddle.dart';
+import 'package:mog_discord_bot/commands/roleplay/dance.dart';
+import 'package:mog_discord_bot/commands/roleplay/handhold.dart';
+import 'package:mog_discord_bot/commands/roleplay/happy.dart';
+import 'package:mog_discord_bot/commands/roleplay/highfive.dart';
 import 'package:mog_discord_bot/commands/roleplay/hug.dart';
+import 'package:mog_discord_bot/commands/roleplay/kick.dart';
+import 'package:mog_discord_bot/commands/roleplay/kill.dart';
+import 'package:mog_discord_bot/commands/roleplay/kiss.dart';
+import 'package:mog_discord_bot/commands/roleplay/lick.dart';
+import 'package:mog_discord_bot/commands/roleplay/nom.dart';
+import 'package:mog_discord_bot/commands/roleplay/pat.dart';
+import 'package:mog_discord_bot/commands/roleplay/poke.dart';
+import 'package:mog_discord_bot/commands/roleplay/slap.dart';
+import 'package:mog_discord_bot/commands/roleplay/smile.dart';
+import 'package:mog_discord_bot/commands/roleplay/smug.dart';
+import 'package:mog_discord_bot/commands/roleplay/wave.dart';
+import 'package:mog_discord_bot/commands/roleplay/wink.dart';
+import 'package:mog_discord_bot/commands/roleplay/yeet.dart';
 import 'package:mog_discord_bot/database.dart';
 import 'package:mog_discord_bot/utils/functions.dart';
 import 'package:mysql1/mysql1.dart';
@@ -24,19 +48,56 @@ var env = DotEnv(includePlatformEnvironment: true)..load();
 final Set<Snowflake> currentGuildIds = {};
 
 CommandsPlugin setupCommandHandler(CommandsPlugin commands) {
+  // Configuration commands
   commands.addCommand(announcements);
   commands.addCommand(autorole);
   commands.addCommand(color);
   commands.addCommand(language);
+
+  // Developer commands
   commands.addCommand(system);
+
+  // Fun commands
   commands.addCommand(someone);
+
+  // General commands
   commands.addCommand(info);
   commands.addCommand(ping);
+
+  // Image commands
   commands.addCommand(awoo);
   commands.addCommand(neko);
   commands.addCommand(waifu);
+
+  // Moderation commands
   commands.addCommand(clear);
+
+  // Roleplay commands
+  commands.addCommand(bite);
+  commands.addCommand(blush);
+  commands.addCommand(bonk);
+  commands.addCommand(bully);
+  commands.addCommand(cringe);
+  commands.addCommand(cry);
+  commands.addCommand(cuddle);
+  commands.addCommand(dance);
+  commands.addCommand(handhold);
+  commands.addCommand(happy);
+  commands.addCommand(highfive);
   commands.addCommand(hug);
+  commands.addCommand(kick);
+  commands.addCommand(kill);
+  commands.addCommand(kiss);
+  commands.addCommand(lick);
+  commands.addCommand(nom);
+  commands.addCommand(pat);
+  commands.addCommand(poke);
+  commands.addCommand(slap);
+  commands.addCommand(smile);
+  commands.addCommand(smug);
+  commands.addCommand(wave);
+  commands.addCommand(wink);
+  commands.addCommand(yeet);
 
   return commands;
 }
