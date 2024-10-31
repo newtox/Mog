@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dotenv/dotenv.dart';
 import 'package:mysql1/mysql1.dart';
 import 'package:nyxx/nyxx.dart';
+import 'package:yaml/yaml.dart';
 
 var env = DotEnv(includePlatformEnvironment: true)..load();
 
@@ -68,40 +69,15 @@ Future<String> getString(User user, String dbString) async {
           [userId, language, '#7289da']);
     } else {
       final blobData = results.first['language'];
-
-      List<int> languageBytes;
-      if (blobData is Blob) {
-        languageBytes = blobData.toBytes();
-      } else {
-        languageBytes = blobData as List<int>;
-      }
-
+      List<int> languageBytes =
+          blobData is Blob ? blobData.toBytes() : blobData;
       language = utf8.decode(languageBytes);
     }
 
-    final languageFile =
-        File('${Directory.current.path}/lib/utils/languages/$language.json');
-    if (!(await languageFile.exists())) {
-      print('File does not exist: ${languageFile.path}');
-    }
+    final yamlFile = File('${Directory.current.path}/lib/utils/languages.yaml');
+    final yamlContent = loadYaml(await yamlFile.readAsString());
 
-    try {
-      final fileStats = await languageFile.stat();
-      if (fileStats.size == 0) {
-        print('File is empty: ${languageFile.path}');
-      }
-
-      final content = await languageFile.readAsString(encoding: utf8);
-      final languageData = jsonDecode(content);
-
-      if (!languageData.containsKey(dbString)) {
-        print('Key not found in JSON: $dbString');
-      }
-
-      return languageData[dbString] ?? '';
-    } catch (e) {
-      print('Error reading or decoding file: $e');
-    }
+    return yamlContent[language][dbString] ?? '';
   } catch (e) {
     print('Error in getString: $e');
   } finally {
