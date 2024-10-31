@@ -4,6 +4,7 @@ import 'package:mog_discord_bot/commands/configuration/autorole.dart';
 import 'package:mog_discord_bot/commands/configuration/color.dart';
 import 'package:mog_discord_bot/commands/configuration/language.dart';
 import 'package:mog_discord_bot/commands/developer/system.dart';
+import 'package:mog_discord_bot/commands/fun/eightball.dart';
 import 'package:mog_discord_bot/commands/fun/someone.dart';
 import 'package:mog_discord_bot/commands/general/info.dart';
 import 'package:mog_discord_bot/commands/general/ping.dart';
@@ -58,6 +59,7 @@ CommandsPlugin setupCommandHandler(CommandsPlugin commands) {
   commands.addCommand(system);
 
   // Fun commands
+  commands.addCommand(eightball);
   commands.addCommand(someone);
 
   // General commands
