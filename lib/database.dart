@@ -87,7 +87,6 @@ Future<String> getString(User user, String dbString) async {
   return '';
 }
 
-/// Removes entries from the 'guilds' table for guilds that no longer exist in the Discord client.
 Future<void> clearOldGuilds(NyxxGateway client) async {
   MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
       host: env['db_host']!,
@@ -96,24 +95,20 @@ Future<void> clearOldGuilds(NyxxGateway client) async {
       db: env['db_name']));
 
   try {
-    // Fetch all records from the 'guilds' table.
     final results = await connection.query('SELECT * FROM `guilds`;', []);
 
-    // Iterate over each guild record.
     for (final row in results) {
-      // 'id' is stored as a string in the database but needs to be an int for queries.
       final String guildIdAsString = row['id'].toString();
       int? guildIdAsInt = int.tryParse(guildIdAsString);
 
       if (guildIdAsInt == null) {
         print('Failed to parse guild ID: $guildIdAsString');
-        continue; // Skip this iteration if ID can't be parsed.
+        continue;
       }
-      // Check if the guild can still be fetched.
+
       try {
         await client.guilds.fetch(Snowflake(guildIdAsInt));
       } catch (e) {
-        // If not, delete the guild record from the database.
         await connection
             .query('DELETE FROM `guilds` WHERE `id` = ?;', [guildIdAsString]);
       } finally {
@@ -127,7 +122,6 @@ Future<void> clearOldGuilds(NyxxGateway client) async {
   }
 }
 
-/// Removes entries from the 'users' table for users that no longer exist in the Discord client.
 Future<void> clearOldUsers(NyxxGateway client) async {
   MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
       host: env['db_host']!,
@@ -136,24 +130,20 @@ Future<void> clearOldUsers(NyxxGateway client) async {
       db: env['db_name']));
 
   try {
-    // Fetch all records from the 'users' table.
     final results = await connection.query('SELECT * FROM `users`;', []);
 
-    // Iterate over each user record.
     for (final row in results) {
-      // 'id' is stored as a string in the database but needs to be an int for queries.
       final String userIdAsString = row['id'].toString();
       int? userIdAsInt = int.tryParse(userIdAsString);
 
       if (userIdAsInt == null) {
         print('Failed to parse user ID: $userIdAsString');
-        continue; // Skip this iteration if ID can't be parsed.
+        continue;
       }
-      // Check if the user can still be fetched.
+
       try {
         await client.users.fetch(Snowflake(userIdAsInt));
       } catch (e) {
-        // If not, delete the user record from the database.
         await connection
             .query('DELETE FROM `users` WHERE `id` = ?;', [userIdAsString]);
       } finally {
