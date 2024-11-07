@@ -176,7 +176,8 @@ void setupGuildMemberAddHandler(NyxxGateway client) async {
 
         if (guildSettings['welcome_msg'] != null &&
             guildSettings['welcome_channel'] != null) {
-          final welcomeChannelId = Snowflake(guildSettings['welcome_channel']);
+          final welcomeChannelId =
+              Snowflake(int.parse(guildSettings['welcome_channel']));
           final welcomeChannel = await client.channels[welcomeChannelId].get();
 
           if (welcomeChannel is TextChannel) {
@@ -231,7 +232,8 @@ void setupGuildMemberRemoveHandler(NyxxGateway client) async {
 
           if (guildSettings['bye_msg'] != null &&
               guildSettings['bye_channel'] != null) {
-            final byeChannelId = Snowflake(guildSettings['bye_channel']);
+            final byeChannelId =
+                Snowflake(int.parse(guildSettings['bye_channel']));
             final byeChannel = await client.channels[byeChannelId].get();
 
             if (byeChannel is TextChannel) {
