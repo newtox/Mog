@@ -178,9 +178,9 @@ void setupGuildMemberAddHandler(NyxxGateway client) async {
             String welcomeMessage = (guildSettings['welcome_msg'] as Blob?)
                     ?.toString()
                     .replaceAll('&user',
-                        event.member.user?.globalName ?? 'Unknown User')
+                        '${event.member.user?.username} (${event.member.user?.globalName})')
                     .replaceAll('&server', fullGuild.name)
-                    .replaceAll('&mention', event.member.toString()) ??
+                    .replaceAll('&mention', "<@${event.member.id}>") ??
                 'Default message if welcome_msg is null';
 
             try {
@@ -229,10 +229,11 @@ void setupGuildMemberRemoveHandler(NyxxGateway client) async {
             if (byeChannel is TextChannel) {
               String byeMessage = (guildSettings['bye_msg'] as Blob?)
                       ?.toString()
-                      .replaceAll(
-                          '&user', event.user.globalName ?? 'Unknown User')
+                      .replaceAll('&user',
+                          '${event.removedMember?.user?.username} (${event.removedMember?.user?.globalName})')
                       .replaceAll('&server', fullGuild.name)
-                      .replaceAll('&mention', event.removedMember.toString()) ??
+                      .replaceAll(
+                          '&mention', "<@${event.removedMember?.id}>") ??
                   'Default message if bye_msg is null';
 
               try {
