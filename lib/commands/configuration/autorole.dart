@@ -1,6 +1,5 @@
 import 'package:dotenv/dotenv.dart';
 import 'package:mog_discord_bot/database.dart';
-import 'package:mysql1/mysql1.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
@@ -58,12 +57,7 @@ final autorole = ChatGroup('autorole', 'Set an autorole for your server.',
                 Locale.ko: '자동 역할로 설정하고자 하는 역할.'
               })
               Role? role) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         try {
           var results = await connection.query(
@@ -145,12 +139,7 @@ final autorole = ChatGroup('autorole', 'Set an autorole for your server.',
             Locale.ja: '現在の自動ロールを表示します。',
             Locale.ko: '현재 자동 역할을 표시합니다.'
           }, (ChatContext context) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         var results = await connection.query(
             'SELECT * FROM `guilds` WHERE `id` = ? LIMIT 1;',
@@ -209,12 +198,7 @@ final autorole = ChatGroup('autorole', 'Set an autorole for your server.',
             Locale.ja: 'このオプションを使用して、現在の自動ロールをリセットします。',
             Locale.ko: '현재 자동 역할을 초기화하려면 이 옵션을 사용하세요.'
           }, (ChatContext context) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         var results = await connection.query(
             'SELECT * FROM `guilds` WHERE `id` = ? LIMIT 1;',

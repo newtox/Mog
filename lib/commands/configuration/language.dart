@@ -1,6 +1,5 @@
 import 'package:dotenv/dotenv.dart';
 import 'package:mog_discord_bot/database.dart';
-import 'package:mysql1/mysql1.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
@@ -68,11 +67,7 @@ final language = ChatCommand('language', 'Set your preferred language.',
     MessageBuilder(content: await getString(context.user, 'language_select')),
   );
 
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   String languageCode = switch (selectedLanguage) {
     'Dansk' => 'da_dk',

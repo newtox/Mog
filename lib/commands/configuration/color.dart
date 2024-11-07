@@ -1,6 +1,5 @@
 import 'package:dotenv/dotenv.dart';
 import 'package:mog_discord_bot/database.dart';
-import 'package:mysql1/mysql1.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
@@ -33,11 +32,7 @@ final color = ChatCommand('color', 'Configure your color for embeds.',
           Locale.ko: '네 임베드의 색상.'
         })
         String color) async {
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     final matchesHex = RegExp(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$');

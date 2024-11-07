@@ -148,13 +148,7 @@ void setupGuildCreateHandler(NyxxGateway client) async {
 
 void setupGuildMemberAddHandler(NyxxGateway client) async {
   client.onGuildMemberAdd.listen((event) async {
-    MySqlConnection connection =
-        await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name'],
-    ));
+    final connection = await getMySqlConnection();
 
     try {
       final fullGuild = await client.guilds.get(event.guild.id);
@@ -212,13 +206,7 @@ void setupGuildMemberAddHandler(NyxxGateway client) async {
 
 void setupGuildMemberRemoveHandler(NyxxGateway client) async {
   client.onGuildMemberRemove.listen((event) async {
-    MySqlConnection connection =
-        await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name'],
-    ));
+    final connection = await getMySqlConnection();
 
     try {
       if (client.guilds.cache.containsKey(event.guild.id)) {

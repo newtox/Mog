@@ -1,7 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:dotenv/dotenv.dart';
 import 'package:mog_discord_bot/database.dart';
-import 'package:mysql1/mysql1.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
@@ -102,12 +101,7 @@ final announcements = ChatGroup('announcements', 'Manage server announcements.',
                 Locale.ko: '공지 메시지. &user, &server, &mention 대체.'
               })
               String message) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         try {
           String channelColumn =
@@ -157,12 +151,7 @@ final announcements = ChatGroup('announcements', 'Manage server announcements.',
             Locale.ja: '現在の告知設定を表示する。',
             Locale.ko: '현재 공지 설정 표시.'
           }, (ChatContext context) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         var results = await connection.query(
             'SELECT * FROM `guilds` WHERE `id` = ? LIMIT 1;',
@@ -277,12 +266,7 @@ final announcements = ChatGroup('announcements', 'Manage server announcements.',
               })
               @UseConverter(announcementTypeConverter)
               String type) async {
-        MySqlConnection connection = await MySqlConnection.connect(
-            ConnectionSettings(
-                host: env['db_host']!,
-                user: env['db_user'],
-                password: env['db_password'],
-                db: env['db_name']));
+        final connection = await getMySqlConnection();
 
         try {
           String channelColumn =

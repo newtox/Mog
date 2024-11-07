@@ -16,11 +16,7 @@ Future<Guild?> checkForDatabase(Guild guild) async {
     return null;
   }
 
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     var guildId = guild.id.toString();
@@ -46,11 +42,7 @@ Future<Guild?> checkForDatabase(Guild guild) async {
 }
 
 Future<String> getString(User user, String dbString) async {
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     final userId = user.id.toString();
@@ -88,11 +80,7 @@ Future<String> getString(User user, String dbString) async {
 }
 
 Future<void> clearOldGuilds(NyxxGateway client) async {
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     final results = await connection.query('SELECT * FROM `guilds`;', []);
@@ -123,11 +111,7 @@ Future<void> clearOldGuilds(NyxxGateway client) async {
 }
 
 Future<void> clearOldUsers(NyxxGateway client) async {
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     final results = await connection.query('SELECT * FROM `users`;', []);
@@ -155,4 +139,12 @@ Future<void> clearOldUsers(NyxxGateway client) async {
   } finally {
     await connection.close();
   }
+}
+
+Future<MySqlConnection> getMySqlConnection() async {
+  return MySqlConnection.connect(ConnectionSettings(
+      host: env['db_host']!,
+      user: env['db_user'],
+      password: env['db_password'],
+      db: env['db_name']));
 }

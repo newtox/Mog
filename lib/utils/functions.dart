@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:dotenv/dotenv.dart';
-import 'package:mysql1/mysql1.dart';
+import 'package:mog_discord_bot/database.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:path/path.dart' as path;
 
@@ -26,11 +26,7 @@ Future<DiscordColor> getHighestRoleColor(Member member) async {
 }
 
 Future<DiscordColor?> getUserColorFromDatabase(Snowflake userId) async {
-  MySqlConnection connection = await MySqlConnection.connect(ConnectionSettings(
-      host: env['db_host']!,
-      user: env['db_user'],
-      password: env['db_password'],
-      db: env['db_name']));
+  final connection = await getMySqlConnection();
 
   try {
     final results = await connection.query(
