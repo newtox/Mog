@@ -110,5 +110,69 @@ final system =
           level: ResponseLevel.hint);
       return;
     }
+  }),
+  ChatCommand('listroles', 'List all roles and their permissions.',
+      localizedDescriptions: {
+        Locale.da: 'Vis alle roller og deres tilladelser.',
+        Locale.de: 'Alle Rollen und deren Berechtigungen auflisten.',
+        Locale.enUs: 'List all roles and their permissions.',
+        Locale.esEs: 'Listar todos los roles y sus permisos.',
+        Locale.fr: 'Lister tous les rôles et leurs permissions.',
+        Locale.ru: 'Список всех ролей и их разрешений.',
+        Locale.hi: 'सभी भूमिकाएं और उनकी अनुमतियां सूचीबद्ध करें।',
+        Locale.zhCn: '列出所有角色及其权限。',
+        Locale.ja: '全ての役割とその権限を一覧表示。',
+        Locale.ko: '모든 역할과 권한 나열.'
+      }, (
+    ChatContext context,
+    @Description('Whether to send the output as a hastebin link.', {
+      Locale.da: 'Om output skal sendes som en hastebin link.',
+      Locale.de: 'Ob die Ausgabe als Hastebin-Link gesendet werden soll.',
+      Locale.enUs: 'Whether to send the output as a hastebin link.',
+      Locale.esEs: 'Si se debe enviar la salida como un enlace de hastebin.',
+      Locale.fr: 'Si la sortie doit être envoyée comme un lien hastebin.',
+      Locale.ru: 'Отправить вывод как ссылку на hastebin.',
+      Locale.hi: 'आउटपुट को hastebin लिंक के रूप में भेजना है या नहीं।',
+      Locale.zhCn: '是否将输出作为 hastebin 链接发送。',
+      Locale.ja: '出力を hastebin リンクとして送信するかどうか。',
+      Locale.ko: '출력을 hastebin 링크로 보낼지 여부.'
+    })
+    bool hastebin,
+  ) async {
+    final guild = context.guild;
+    final roles = guild!.roles.cache.values.toList();
+
+    String content = '';
+
+    for (final role in roles) {
+      content += '📑 ${role.name}\n';
+      content += 'Permissions:\n';
+
+      for (final permission in role.permissions.toList()) {
+        content += '✅ $permission\n';
+      }
+      content += '\n';
+    }
+
+    if (hastebin) {
+      final hastebinUrl = await uploadToHastebin(content);
+      await context.respond(MessageBuilder(embeds: [
+        EmbedBuilder(
+          color: DiscordColor.parseHexString('#3498db'),
+          title: '${guild.name} Role Permissions',
+          description: codeBlock(hastebinUrl, 'sh'),
+        )
+      ]));
+    } else {
+      await context.respond(MessageBuilder(embeds: [
+        EmbedBuilder(
+          color: DiscordColor.parseHexString('#3498db'),
+          title: '${guild.name} Role Permissions',
+          description: content.length > 4096
+              ? codeBlock('Content too long, use hastebin option', 'sh')
+              : codeBlock(content, 'sh'),
+        )
+      ]));
+    }
   })
 ]);

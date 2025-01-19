@@ -124,3 +124,14 @@ void randomStatus(ReadyEvent event) {
     print('Error in randomStatus: $e');
   }
 }
+
+List<String> splitMessage(String message, {int maxLength = 2000}) {
+  List<String> chunks = [];
+  while (message.length > maxLength) {
+    int index = message.substring(0, maxLength).lastIndexOf('\n');
+    chunks.add(message.substring(0, index));
+    message = message.substring(index + 1);
+  }
+  chunks.add(message);
+  return chunks;
+}
