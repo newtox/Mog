@@ -139,40 +139,47 @@ final system =
     })
     bool hastebin,
   ) async {
-    final guild = context.guild;
-    final roles = guild!.roles.cache.values.toList();
+    try {
+      final guild = context.guild;
+      final roles = guild!.roles.cache.values.toList();
 
-    String content = '';
+      String content = '';
 
-    for (final role in roles) {
-      content += '📑 ${role.name}\n';
-      content += 'Permissions:\n';
+      for (final role in roles) {
+        content += '📑 ${role.name}\n';
+        content += 'Permissions:\n';
 
-      for (final permission in role.permissions.toList()) {
-        content += '✅ $permission\n';
+        for (final permission in role.permissions.toList()) {
+          content += '✅ $permission\n';
+        }
+        content += '\n';
       }
-      content += '\n';
-    }
 
-    if (hastebin) {
-      final hastebinUrl = await uploadToHastebin(content);
-      await context.respond(MessageBuilder(embeds: [
-        EmbedBuilder(
-          color: DiscordColor.parseHexString('#3498db'),
-          title: '${guild.name} Role Permissions',
-          description: codeBlock(hastebinUrl, 'sh'),
-        )
-      ]));
-    } else {
-      await context.respond(MessageBuilder(embeds: [
-        EmbedBuilder(
-          color: DiscordColor.parseHexString('#3498db'),
-          title: '${guild.name} Role Permissions',
-          description: content.length > 4096
-              ? codeBlock('Content too long, use hastebin option', 'sh')
-              : codeBlock(content, 'sh'),
-        )
-      ]));
+      String result;
+
+      if (hastebin) {
+        result = await uploadToHastebin(content);
+
+        await context.respond(MessageBuilder(content: result));
+      } else {
+        result = content.length > 1980
+            ? '${content.substring(0, 1980)}...'
+            : content;
+
+        await context
+            .respond(MessageBuilder(content: codeBlock(result, 'dart')));
+      }
+    } catch (e) {
+      await context.respond(
+          MessageBuilder(embeds: [
+            EmbedBuilder(
+              color: DiscordColor.parseHexString('#c41111'),
+              title: await getString(context.user, 'global_error'),
+              description: codeBlock(e.toString(), 'sh'),
+            )
+          ]),
+          level: ResponseLevel.hint);
+      return;
     }
   })
 ]);
