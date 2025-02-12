@@ -130,7 +130,7 @@ void setupGuildCreateHandler(NyxxGateway client) async {
       final channel = await client.channels[channelId].get();
 
       if (channel is TextChannel) {
-        channel.sendMessage(MessageBuilder(embeds: [
+        await channel.sendMessage(MessageBuilder(embeds: [
           EmbedBuilder(
               timestamp: DateTime.now().toUtc(),
               color: DiscordColor.parseHexString('#57f287'),
@@ -165,6 +165,7 @@ void setupGuildMemberAddHandler(NyxxGateway client) async {
             await event.member.addRole(Snowflake(guildSettings['autorole']));
           } catch (e) {
             print('Failed to add autorole: $e');
+            return;
           }
         }
 
@@ -194,11 +195,13 @@ void setupGuildMemberAddHandler(NyxxGateway client) async {
           } else {
             print(
                 'Welcome channel not found or not a text channel: $welcomeChannelId');
+            return;
           }
         }
       }
     } catch (e) {
       print('Error in setupGuildMemberAddHandler: $e');
+      return;
     } finally {
       await connection.close();
     }
@@ -246,12 +249,14 @@ void setupGuildMemberRemoveHandler(NyxxGateway client) async {
               }
             } else {
               print('Channel not found or not a text channel: $byeChannelId');
+              return;
             }
           }
         }
       }
     } catch (e) {
       print('Error in setupGuildMemberRemoveHandler: $e');
+      return;
     } finally {
       await connection.close();
     }
@@ -274,7 +279,7 @@ void setupGuildDeleteHandler(NyxxGateway client) async {
           final channel = await client.channels[channelId].get();
 
           if (channel is TextChannel) {
-            channel.sendMessage(MessageBuilder(embeds: [
+            await channel.sendMessage(MessageBuilder(embeds: [
               EmbedBuilder(
                   timestamp: DateTime.now().toUtc(),
                   color: DiscordColor.parseHexString('#ed4245'),
@@ -323,6 +328,7 @@ void setupErrorHandler(CommandsPlugin commands) async {
       }
     } else {
       print('Uncaught error: $error');
+      return;
     }
   });
 }
@@ -351,7 +357,7 @@ void setupCommandPostCallHandler(
 
       if (channel is TextChannel) {
         if (context.user.id != Snowflake(402483602094555138)) {
-          channel.sendMessage(MessageBuilder(embeds: [
+          await channel.sendMessage(MessageBuilder(embeds: [
             EmbedBuilder(
                 timestamp: DateTime.now().toUtc(),
                 color: DiscordColor.parseHexString('#7289da'),
