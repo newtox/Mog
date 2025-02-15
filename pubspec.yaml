@@ -18,5 +18,11 @@ dependencies:
   path: ^1.9.1
   yaml: ^3.1.2
 
+dependency_overrides:
+  nyxx:
+    git:
+      url: https://github.com/nyxx-discord/nyxx.git
+      ref: bug/remote-close-undetected
+
 dev_dependencies:
   lints: ^4.0.0

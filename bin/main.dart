@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotenv/dotenv.dart';
 import 'package:mog_discord_bot/events.dart';
 import 'package:nyxx/nyxx.dart';
@@ -14,9 +16,20 @@ void main() async {
           defaultResponseLevel: ResponseLevel.public,
           type: CommandType.slashOnly));
 
+  final mogLogs = File('mog_logs.log').openWrite();
+
   final client = await Nyxx.connectGateway(env['token']!, GatewayIntents.all,
-      options: GatewayClientOptions(
-          plugins: [logging, cliIntegration, setupCommandHandler(commands)]));
+      options: GatewayClientOptions(plugins: [
+        Logging(
+            stderrLevel: Level.ALL,
+            stackTraceLevel: Level.ALL,
+            logLevel: Level.ALL,
+            censorToken: true,
+            stdout: mogLogs,
+            stderr: mogLogs),
+        cliIntegration,
+        setupCommandHandler(commands)
+      ]));
 
   setupReadyHandler(client);
   setupGuildCreateHandler(client);
