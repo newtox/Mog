@@ -16,17 +16,15 @@ void main() async {
           defaultResponseLevel: ResponseLevel.public,
           type: CommandType.slashOnly));
 
-  final mogLogs = File('mog_logs.log').openWrite();
-
   final client = await Nyxx.connectGateway(env['token']!, GatewayIntents.all,
       options: GatewayClientOptions(plugins: [
         Logging(
-            stderrLevel: Level.ALL,
-            stackTraceLevel: Level.ALL,
-            logLevel: Level.ALL,
+            stderrLevel: Level.SEVERE,
+            stackTraceLevel: Level.SEVERE,
+            logLevel: Level.INFO,
             censorToken: true,
-            stdout: mogLogs,
-            stderr: mogLogs),
+            stdout: stdout,
+            stderr: stderr),
         cliIntegration,
         setupCommandHandler(commands)
       ]));
