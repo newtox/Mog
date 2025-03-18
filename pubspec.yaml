@@ -7,22 +7,16 @@ environment:
   sdk: ^3.5.2
 
 dependencies:
-  collection: ^1.19.0
+  collection: ^1.19.1
   dotenv: ^4.2.0
-  http: ^1.2.2
+  http: ^1.3.0
   mysql1: ^0.20.0
-  nyxx: ^6.3.1
-  nyxx_commands: ^6.0.2
-  nyxx_extensions: ^4.1.0
+  nyxx: ^6.6.0
+  nyxx_commands: ^6.0.3
+  nyxx_extensions: ^4.3.0
   nyxx_lavalink: ^4.0.0-dev.1
   path: ^1.9.1
-  yaml: ^3.1.2
-
-dependency_overrides:
-  nyxx:
-    git:
-      url: https://github.com/nyxx-discord/nyxx.git
-      ref: bug/remote-close-undetected
+  yaml: ^3.1.3
 
 dev_dependencies:
-  lints: ^4.0.0
+  lints: ^5.0.0
