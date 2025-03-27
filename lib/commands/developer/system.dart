@@ -239,7 +239,8 @@ final system =
 
         try {
           const sqlQuery =
-              'SELECT id, created_at, status, note, info FROM peer;';
+              'SELECT hex(guid) as guid, id, hex(uuid) as uuid, hex(pk) as pk, created_at, hex(user) as user, status, note, info FROM peer;';
+
           final result = db.select(sqlQuery);
 
           String content = '# RustDesk IDs\n\n';
@@ -263,14 +264,16 @@ final system =
 
           if (hastebin) {
             res = await uploadToHastebin(content);
-            await context.respond(MessageBuilder(content: res));
+            await context.respond(MessageBuilder(content: res),
+                level: ResponseLevel.hint);
           } else {
             res = content.length > 1980
                 ? '${content.substring(0, 1980)}...'
                 : content;
 
-            await context
-                .respond(MessageBuilder(content: codeBlock(res, 'markdown')));
+            await context.respond(
+                MessageBuilder(content: codeBlock(res, 'markdown')),
+                level: ResponseLevel.hint);
           }
         } finally {
           db.dispose();
