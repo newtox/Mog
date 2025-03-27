@@ -215,7 +215,7 @@ final system =
         })
         bool hastebin) async {
       try {
-        final dbPath = '/data/compose/10/data/db_v2.sqlite3';
+        final dbPath = '/data/rustdesk/db_v2.sqlite3';
         final dbFile = File(dbPath);
 
         if (!dbFile.existsSync()) {
@@ -270,7 +270,7 @@ final system =
                 : content;
 
             await context
-                .respond(MessageBuilder(content: codeBlock(res, 'dart')));
+                .respond(MessageBuilder(content: codeBlock(res, 'markdown')));
           }
         } finally {
           db.dispose();
