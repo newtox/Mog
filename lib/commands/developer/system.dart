@@ -5,6 +5,7 @@ import 'package:mog_discord_bot/utils/utils.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
+import 'package:sqlite3/sqlite3.dart';
 
 final system =
     ChatGroup('system', 'Commands for the developer.', localizedDescriptions: {
@@ -181,5 +182,113 @@ final system =
           level: ResponseLevel.hint);
       return;
     }
-  })
+  }),
+  ChatCommand(
+    'rustdesk-ids',
+    'Display RustDesk IDs from the SQLite database.',
+    localizedDescriptions: {
+      Locale.da: 'Vis RustDesk-ID\'er fra SQLite-databasen.',
+      Locale.de: 'RustDesk-IDs aus der SQLite-Datenbank anzeigen.',
+      Locale.enUs: 'Display RustDesk IDs from the SQLite database.',
+      Locale.esEs: 'Mostrar IDs de RustDesk de la base de datos SQLite.',
+      Locale.fr:
+          'Afficher les identifiants RustDesk de la base de données SQLite.',
+      Locale.ru: 'Отображение идентификаторов RustDesk из базы данных SQLite.',
+      Locale.hi: 'SQLite डेटाबेस से RustDesk आईडी प्रदर्शित करें।',
+      Locale.zhCn: '显示 SQLite 数据库中的 RustDesk ID。',
+      Locale.ja: 'SQLiteデータベースからRustDesk IDを表示します。',
+      Locale.ko: 'SQLite 데이터베이스에서 RustDesk ID를 표시합니다.'
+    },
+    (ChatContext context,
+        @Description('Whether to send the output as a hastebin link.', {
+          Locale.da: 'Om output skal sendes som en hastebin link.',
+          Locale.de: 'Ob die Ausgabe als Hastebin-Link gesendet werden soll.',
+          Locale.enUs: 'Whether to send the output as a hastebin link.',
+          Locale.esEs:
+              'Si se debe enviar la salida como un enlace de hastebin.',
+          Locale.fr: 'Si la sortie doit être envoyée comme un lien hastebin.',
+          Locale.ru: 'Отправить вывод как ссылку на hastebin.',
+          Locale.hi: 'आउटपुट को hastebin लिंक के रूप में भेजना है या नहीं।',
+          Locale.zhCn: '是否将输出作为 hastebin 链接发送。',
+          Locale.ja: '出力を hastebin リンクとして送信するかどうか。',
+          Locale.ko: '출력을 hastebin 링크로 보낼지 여부.'
+        })
+        bool hastebin) async {
+      try {
+        final dbPath = '/data/compose/10/data/db_v2.sqlite3';
+        final dbFile = File(dbPath);
+
+        if (!dbFile.existsSync()) {
+          await context.respond(
+            MessageBuilder(
+              embeds: [
+                EmbedBuilder(
+                  color: DiscordColor.parseHexString('#c41111'),
+                  title: await getString(context.user, 'global_error'),
+                  description:
+                      'SQLite file not found at the predefined path: $dbPath',
+                )
+              ],
+            ),
+            level: ResponseLevel.hint,
+          );
+          return;
+        }
+
+        final db = sqlite3.open(dbFile.path);
+
+        try {
+          const sqlQuery =
+              'SELECT id, created_at, status, note, info FROM peer;';
+          final result = db.select(sqlQuery);
+
+          String content = '# RustDesk IDs\n\n';
+
+          if (result.isNotEmpty) {
+            final columns = result.first.keys;
+            content += '${columns.join(' | ')}\n';
+            content += '${columns.map((_) => '---').join(' | ')}\n';
+          }
+
+          for (var row in result) {
+            content +=
+                '${row.values.map((value) => value?.toString() ?? 'NULL').join(' | ')}\n';
+          }
+
+          if (result.isEmpty) {
+            content += 'No RustDesk IDs found in the database.';
+          }
+
+          String res;
+
+          if (hastebin) {
+            res = await uploadToHastebin(content);
+            await context.respond(MessageBuilder(content: res));
+          } else {
+            res = content.length > 1980
+                ? '${content.substring(0, 1980)}...'
+                : content;
+
+            await context
+                .respond(MessageBuilder(content: codeBlock(res, 'dart')));
+          }
+        } finally {
+          db.dispose();
+        }
+      } catch (e) {
+        await context.respond(
+          MessageBuilder(
+            embeds: [
+              EmbedBuilder(
+                color: DiscordColor.parseHexString('#c41111'),
+                title: await getString(context.user, 'global_error'),
+                description: codeBlock(e.toString(), 'sh'),
+              )
+            ],
+          ),
+          level: ResponseLevel.hint,
+        );
+      }
+    },
+  )
 ]);
