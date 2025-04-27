@@ -8,7 +8,7 @@ import 'package:nyxx_commands/nyxx_commands.dart';
 import 'package:nyxx_extensions/nyxx_extensions.dart';
 
 final kiss = ChatCommand('kiss', 'Kiss someone.', localizedDescriptions: {
-  Locale.da: 'Kys nogen.',
+  Locale.da: 'Kysse nogen.',
   Locale.de: 'Jemanden küssen.',
   Locale.enUs: 'Kiss someone.',
   Locale.esEs: 'Besar a alguien.',
