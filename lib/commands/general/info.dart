@@ -61,7 +61,7 @@ final info = ChatCommand('info', 'Get generic information about the bot.',
           EmbedFieldBuilder(
               name: await getString(context.user, 'info_uptime'),
               value: ComponentId.currentSessionStartTime
-                  .format(TimestampStyle.longTime),
+                  .format(TimestampStyle.relativeTime),
               isInline: true)
         ],
         footer: EmbedFooterBuilder(
